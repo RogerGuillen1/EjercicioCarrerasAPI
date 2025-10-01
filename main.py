@@ -1,22 +1,18 @@
 import mysql.connector
 print("1")
 
-try:
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="123456",
-        database="universidad",
-    )
-    print("✅ Conexión exitosa.")
-
-except Exception as e:
-    print("❌ Error de conexión a MySQL:", e)
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="123456",
+    database="universidad",
+)
 
 print("2")
+
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT * FROM carreras")
+mycursor.execute("SELECT * FROM carrera")
 
 myresult = mycursor.fetchall()
 
