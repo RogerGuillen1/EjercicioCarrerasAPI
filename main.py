@@ -1,14 +1,27 @@
 import mysql.connector
 from Carrera import Carrera
 from CarreraDAO import CarreraDAO
+import logging
+import pymysql
+import socket
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+result = sock.connect_ex(('127.0.0.1', 3306))
+print('Socket connect result:', result)  # 0 means success
+sock.close()
+
+logging.basicConfig(level=logging.DEBUG)
+
 print("1")
 
 try:
-    mydb = mysql.connector.connect(
+    print("Trying")
+    mydb = pymysql.connect(
         host="localhost",
         user="root",
-        password="super3",
         database="universidad",
+        password="123456",
+        ssl_disabled=True
     )
     print("✅ Conexión exitosa.")
 
