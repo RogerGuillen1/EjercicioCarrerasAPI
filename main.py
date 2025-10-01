@@ -1,13 +1,26 @@
 import mysql.connector
+print("1")
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="123456",
-  database="universidad"
-)
+try:
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="123456",
+        database="universidad",
+    )
+    print("✅ Conexión exitosa.")
 
+except Exception as e:
+    print("❌ Error de conexión a MySQL:", e)
+
+print("2")
 mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM carreras")
+
+myresult = mycursor.fetchall()
+
+print(myresult)
 
 def main():
     while True:
@@ -25,7 +38,8 @@ def main():
         elif opcion == "2":
             print("Opción: Actualizar carrera (pendiente de implementar)")
         elif opcion == "3":
-            print("Opción: Ver carreras (pendiente de implementar)")
+            carrera = input("Que carrera quieres ver?")
+
         elif opcion == "4":
             print("Opción: Borrar carrera (pendiente de implementar)")
         elif opcion == "5":
@@ -33,3 +47,4 @@ def main():
             break
         else:
             print("Opción no válida, intenta de nuevo.")
+main()
