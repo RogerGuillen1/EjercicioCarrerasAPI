@@ -1,12 +1,13 @@
 import mysql.connector
 from Carrera import Carrera
+from CarreraDAO import CarreraDAO
 print("1")
 
 try:
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="123456",
+        password="super3",
         database="universidad",
     )
     print("✅ Conexión exitosa.")
@@ -23,6 +24,8 @@ myresult = mycursor.fetchall()
 
 print(myresult)
 
+dao = CarreraDAO(mycursor, mydb)
+
 def main():
     while True:
         print("\n=== MENÚ PRINCIPAL ===")
@@ -36,7 +39,7 @@ def main():
 
         if opcion == "1":
             nuevaCarrera = Carrera(input("Introduce el nombre de la carrera que quieres crear: "))
-            nuevaCarrera.insert(mycursor, mydb)
+            dao.insert(nuevaCarrera)
         elif opcion == "2":
             print("Opción: Actualizar carrera (pendiente de implementar)")
         elif opcion == "3":
