@@ -1,21 +1,8 @@
-import mysql.connector
 from Carrera import Carrera
 from CarreraDAO import CarreraDAO
-import logging
 import pymysql
-import socket
-
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-result = sock.connect_ex(('127.0.0.1', 3306))
-print('Socket connect result:', result)  # 0 means success
-sock.close()
-
-logging.basicConfig(level=logging.DEBUG)
-
-print("1")
 
 try:
-    print("Trying")
     mydb = pymysql.connect(
         host="localhost",
         user="root",
@@ -42,7 +29,7 @@ def main():
         print("\n=== MENÚ PRINCIPAL ===")
         print("1. Añadir  carrera")
         print("2. Actualizar carrera")
-        print("3. Ver carrera")
+        print("3. Ver carreras")
         print("4. Borrar carrera")
         print("5. Salir")
         opcion = input("Selecciona una opción: ")
@@ -72,10 +59,29 @@ def main():
 
 
         elif opcion == "3":
-            carrera = input("Que carrera quieres ver?")
+            carreras = [Carrera(c[1]) for c in dao.see_all()]
+            if not carreras:
+                print("No hay carreras registradas.")
+                continue
+            print("Carreras disponibles:")
+            for i, c in enumerate(carreras):
+                print(f'{i+1}. {c.nombre}')
 
         elif opcion == "4":
-            print("Opción: Borrar carrera (pendiente de implementar)")
+            carreras = [Carrera(c[1]) for c in dao.see_all()]
+            if not carreras:
+                print("No hay carreras registradas.")
+                continue
+            print("Carreras disponibles:")
+            for i, c in enumerate(carreras):
+                print(f"{i+1}. {c.get_nombre()}")
+
+            seleccion = int(input("Selecciona el número de la carrera para borrar: "))
+            if seleccion > len(carreras) or seleccion < 1:
+                print("Numero invalido")
+            else:
+                carrera_seleccionada = carreras[seleccion - 1]
+                dao.delete(carrera_seleccionada)
         elif opcion == "5":
             print("Saliendo del programa...")
             break
