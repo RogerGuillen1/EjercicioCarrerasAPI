@@ -1,9 +1,9 @@
 from Carrera import Carrera
 from CarreraDAO import CarreraDAO
-import pymysql
+import mysql.connector
 
 try:
-    mydb = pymysql.connect(
+    mydb = mysql.connector.connect(
         host="localhost",
         user="root",
         database="universidad",
@@ -54,9 +54,6 @@ def main():
                 carrera_seleccionada = carreras[seleccion - 1]
                 nuevo_nombre = input("Escribe el nuevo nombre: ")
                 dao.update(carrera_seleccionada, nuevo_nombre)
-
-            
-
 
         elif opcion == "3":
             carreras = [Carrera(c[1]) for c in dao.see_all()]
