@@ -16,6 +16,7 @@ except Exception as e:
     print("❌ Error de conexión a MySQL:", e)
 
 print("2")
+
 mycursor = mydb.cursor()
 mycursor.execute("SELECT * FROM carrera")
 myresult = mycursor.fetchall()
