@@ -1,4 +1,5 @@
 import mysql.connector
+from Carrera import Carrera
 print("1")
 
 try:
@@ -16,7 +17,7 @@ except Exception as e:
 print("2")
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT * FROM carreras")
+mycursor.execute("SELECT * FROM carrera")
 
 myresult = mycursor.fetchall()
 
@@ -34,7 +35,8 @@ def main():
         opcion = input("Selecciona una opción: ")
 
         if opcion == "1":
-            print("Opción: Añadir carrera (pendiente de implementar)")
+            nuevaCarrera = Carrera(input("Introduce el nombre de la carrera que quieres crear: "))
+            nuevaCarrera.insert(mycursor, mydb)
         elif opcion == "2":
             print("Opción: Actualizar carrera (pendiente de implementar)")
         elif opcion == "3":
