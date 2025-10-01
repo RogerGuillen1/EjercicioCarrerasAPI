@@ -1,30 +1,12 @@
 class Carrera:
-    def __init__(self, pNombre):
-        self.__nombre = pNombre
-    
-    def insert(self, mycursor, mydb):
-        sql = "INSERT INTO carrera (nombre) VALUES (%s)"
-        val = (self.__nombre,)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        print(f"Carrera '{self.__nombre}' insertada correctamente.")
+    def __init__(self, nombre):
+        self.nombre = nombre
 
-    def see(self, mycursor):
-        mycursor.execute("SELECT * FROM carreras")
-        carreras = mycursor.fetchall()
-        return carreras
-    
-    def update(self, mycursor, mydb):
-        nuevo_nombre = input("Introduce el nuevo nombre de la carrera")
-        sql = "UPDATE carrera SET nombre = %s WHERE nombre = %s"
-        val = (nuevo_nombre, self.__nombre)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        print(f"Carrera '{self.__nombre}' actualizada a '{nuevo_nombre}'.")
-        self.__nombre = nuevo_nombre
+    def get_nombre(self):
+        return self.nombre
 
-    def delete(self, mycursor):
-        sql = "DELETE FROM carreras WHERE nombre = %s"
-        val = (self.__nombre)
-        mycursor.execute(sql, val)
-        print(f"Carrera '{self.__nombre}' eliminada.")
+    def set_nombre(self, nuevo_nombre):
+        self.nombre = nuevo_nombre
+
+    def __str__(self):
+        return f"Carrera(nombre='{self.nombre}')"
