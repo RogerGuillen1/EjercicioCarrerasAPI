@@ -4,7 +4,7 @@ class Carrera:
     
     def insert(self, mycursor, mydb):
         sql = "INSERT INTO carrera (nombre) VALUES (%s)"
-        val = (self.__nombre)
+        val = (self.__nombre,)
         mycursor.execute(sql, val)
         mydb.commit()
         print(f"Carrera '{self.__nombre}' insertada correctamente.")
