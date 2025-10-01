@@ -25,7 +25,7 @@ print(myresult)
 def main():
     while True:
         print("\n=== MENÚ PRINCIPAL ===")
-        print("1. Añadir carrera")
+        print("1. Añadir  carrera")
         print("2. Actualizar carrera")
         print("3. Ver carrera")
         print("4. Borrar carrera")
