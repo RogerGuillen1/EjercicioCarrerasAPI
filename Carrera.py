@@ -4,8 +4,13 @@ class Carrera:
     def insert(self, mycursor):
         print("insertar")
     def see(self, mycursor):
-        print("consultar")
+        mycursor.execute("SELECT * FROM carreras")
+        carreras = mycursor.fetchall()
+        return carreras
     def update(self, mycursor):
         print("actualizar")
     def delete(self, mycursor):
-        print("pues essxo")
+        sql = "DELETE FROM carreras WHERE nombre = %s"
+        val = (self.__nombre)
+        mycursor.execute(sql, val)
+        print(f"Carrera '{self.__nombre}' eliminada.")

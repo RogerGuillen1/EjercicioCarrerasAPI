@@ -14,7 +14,7 @@ def main():
         print("\n=== MENÚ PRINCIPAL ===")
         print("1. Añadir carrera")
         print("2. Actualizar carrera")
-        print("3. Ver carreras")
+        print("3. Ver carrera")
         print("4. Borrar carrera")
         print("5. Salir")
         
