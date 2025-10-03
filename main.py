@@ -55,9 +55,6 @@ def main():
                 nuevo_nombre = input("Escribe el nuevo nombre: ")
                 dao.update(carrera_seleccionada, nuevo_nombre)
 
-            
-
-
         elif opcion == "3":
             carreras = [Carrera(c[1]) for c in dao.see_all()]
             if not carreras:
