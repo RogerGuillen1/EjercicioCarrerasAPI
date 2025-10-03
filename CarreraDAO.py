@@ -5,10 +5,10 @@ class CarreraDAO:
 
     def insert(self, carrera):
         sql = "INSERT INTO carrera (nombre) VALUES (%s)"
-        val = (carrera.nombre,)
+        val = (carrera.get_nombre(),)
         self.cursor.execute(sql, val)
         self.db.commit()
-        print(f"Carrera '{carrera.nombre}' insertada correctamente.")
+        print(f"Carrera '{carrera.get_nombre()}' insertada correctamente.")
 
     def see_all(self):
         self.cursor.execute("SELECT * FROM carrera")
@@ -16,15 +16,15 @@ class CarreraDAO:
 
     def update(self, carrera, nuevo_nombre):
         sql = "UPDATE carrera SET nombre = %s WHERE nombre = %s"
-        val = (nuevo_nombre, carrera.nombre)
+        val = (nuevo_nombre, carrera.get_nombre())
         self.cursor.execute(sql, val)
         self.db.commit()
-        print(f"Carrera '{carrera.nombre}' actualizada a '{nuevo_nombre}'.")
-        carrera.nombre = nuevo_nombre
+        print(f"Carrera '{carrera.get_nombre()}' actualizada a '{nuevo_nombre}'.")
+        carrera.set_nombre(nuevo_nombre)
 
     def delete(self, carrera):
         sql = "DELETE FROM carrera WHERE nombre = %s"
-        val = (carrera.nombre,)
+        val = (carrera.get_nombre(),)
         self.cursor.execute(sql, val)
         self.db.commit()
-        print(f"Carrera '{carrera.nombre}' eliminada.")
+        print(f"Carrera '{carrera.get_nombre()}' eliminada.")

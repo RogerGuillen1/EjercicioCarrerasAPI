@@ -1,13 +1,13 @@
 from Carrera import Carrera
 from CarreraDAO import CarreraDAO
-import pymysql
+import mysql.connector
 
 try:
-    mydb = pymysql.connect(
+    mydb = mysql.connector.connect(
         host="localhost",
         user="root",
         database="universidad",
-        password="123456",
+        password="super3",
         ssl_disabled=True
     )
     print("✅ Conexión exitosa.")
@@ -65,7 +65,7 @@ def main():
                 continue
             print("Carreras disponibles:")
             for i, c in enumerate(carreras):
-                print(f'{i+1}. {c.nombre}')
+                print(f'{i+1}. {c.get_nombre()}')
 
         elif opcion == "4":
             carreras = [Carrera(c[1]) for c in dao.see_all()]
