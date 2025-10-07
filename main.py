@@ -1,28 +1,4 @@
-from Carrera import Carrera
-from CarreraDAO import CarreraDAO
-import pymysql
 import requests as req
-
-user = input("Usuario de la base de datos: ")
-password = input("Contraseña de la base de datos: ")
-
-try:
-    mydb = pymysql.connect(
-        host="localhost",
-        user=user,
-        database="universidad",
-        password=password,
-        ssl_disabled=True
-    )
-    mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM carrera")
-    myresult = mycursor.fetchall()
-
-    dao = CarreraDAO(mycursor, mydb)
-    print("✅ Conexión exitosa.")
-
-except Exception as e:
-    print("❌ Error de conexión a MySQL:", e)
 
 def main():
     while True:
