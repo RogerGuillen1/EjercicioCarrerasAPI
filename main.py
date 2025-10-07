@@ -37,7 +37,7 @@ def main():
             nuevaCarrera = input("Introduce el nombre de la carrera que quieres crear: ")
             datos = {'nombre': nuevaCarrera}
             response = req.post('http://localhost:5000/carreras/', data=datos)
-            print(response.json())
+            print("Carrera "+ nuevaCarrera + " creada correctamente.")
 
         elif opcion == "2":
             carreras = req.get('http://localhost:5000/carreras/')
@@ -56,7 +56,7 @@ def main():
                 carrera_seleccionada = carrerasLista[seleccion - 1]
                 nuevo_nombre = input("Escribe el nuevo nombre: ")
                 response = req.patch(f'http://localhost:5000/carreras/', data={'nuevo_nombre': nuevo_nombre, 'carrera': carrera_seleccionada["nombre"]})
-                print(response.json())
+                print(f"La carrera {carrera_seleccionada['nombre']} ahora tiene el nombre {nuevo_nombre}")
 
         elif opcion == "3":
             carreras = req.get('http://localhost:5000/carreras/')
@@ -84,6 +84,7 @@ def main():
             else:
                 carrera_seleccionada = carrerasLista[seleccion - 1]
                 carreras = req.delete('http://localhost:5000/carreras/', data={'nombre': carrera_seleccionada["nombre"]})
+                print(f"La carrera {carrera_seleccionada['nombre']} ha sido eliminada.")
         elif opcion == "5":
             print("Saliendo del programa...")
             break
