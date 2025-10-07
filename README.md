@@ -1,0 +1,10 @@
+Instrucciones para ejecutar el código:
+
+1. Instalar las siguientes necesarias mediante el siguiente comando:
+- pip install -r requirements.txt
+
+2. Montar la base de datos en el workbench con el archivo "Dump20251007.sql"
+
+3. Abrir un terminal en la carpeta base y ejecutar el comando "flask --app api.py run", esto va a iniciar el backend
+
+4. Abrir un terminal distinto y ejecutar con python el archivo "main.py"
