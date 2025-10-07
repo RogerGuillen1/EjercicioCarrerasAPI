@@ -11,17 +11,15 @@ try:
         password="123456",
         ssl_disabled=True
     )
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM carrera")
+    myresult = mycursor.fetchall()
+
+    dao = CarreraDAO(mycursor, mydb)
     print("✅ Conexión exitosa.")
 
 except Exception as e:
     print("❌ Error de conexión a MySQL:", e)
-
-mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM carrera")
-myresult = mycursor.fetchall()
-print(myresult)
-
-dao = CarreraDAO(mycursor, mydb)
 
 def main():
     while True:
