@@ -3,12 +3,15 @@ from CarreraDAO import CarreraDAO
 import pymysql
 import requests as req
 
+user = input("Usuario de la base de datos: ")
+password = input("Contraseña de la base de datos: ")
+
 try:
     mydb = pymysql.connect(
         host="localhost",
-        user="root",
+        user=user,
         database="universidad",
-        password="123456",
+        password=password,
         ssl_disabled=True
     )
     mycursor = mydb.cursor()
